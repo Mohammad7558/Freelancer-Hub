@@ -68,19 +68,20 @@ const Register = () => {
         e.target.reset()
     })
     .catch(error => {
-        toast.error(error.message)
+        toast.error(error.message, {id: toastId})
     })
   };
 
   const handleRegisterWithGoogle = () => {
+    const toastId = toast.loading('Creating User')
     createUserWithGoogle(provider)
     .then(result => {
         const user = result.user;
         navigate(from, { replace: true });
-        toast.success('User create Successfully')
+        toast.success('User create Successfully', {id: toastId})
     })
     .catch(error => {
-        toast.error(error.message)
+        toast.error(error.message, {id: toastId})
     })
   }
 

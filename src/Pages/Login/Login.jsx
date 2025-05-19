@@ -26,27 +26,29 @@ const Login = () => {
     } else if (password === '') {
       return toast.error('Enter Password');
     }
+    const toastId = toast.loading('User Login...')
 
     signInEmailPassword(email, password)
       .then(() => {
-        toast.success("User Login Successfully");
+        toast.success("User Login Successfully", {id: toastId});
         navigate(from, { replace: true });
         e.target.reset();
       })
       .catch((error) => {
-        toast.error(error.message);
+        toast.error(error.message, {id: toastId});
       });
   };
 
   const signInUser = () => {
+    const toastId = toast.loading('User Login...')
     createUserWithGoogle(provider)
       .then(result => {
         const user = result.user;
         navigate(from, { replace: true });
-        toast.success('User Log in Successfully');
+        toast.success('User Log in Successfully', {id: toastId});
       })
       .catch(error => {
-        toast.error(error.message);
+        toast.error(error.message, {id: toastId});
       });
   };
 
