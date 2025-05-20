@@ -9,11 +9,13 @@ import Login from "../Pages/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
 import Loader from "../components/Loader/Loader";
 import BrowseTaskDetails from "../Pages/BrowseTaskDetails/BrowseTaskDetails";
+import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         Component: Main,
+        errorElement: <NotFoundPage/>,
         children: [
             {
                 path: '/',
