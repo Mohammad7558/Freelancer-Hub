@@ -1,46 +1,53 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../provider/AuthContext";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthContext";
+import { useLoaderData } from "react-router-dom";
 
-const AddTask = () => {
+const UpdateTaskPage = () => {
+  const userData = useLoaderData(); // Pre-loaded task data
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
-  const handleAddTask = (e) => {
+  const handleUpdateTask = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const addTask = Object.fromEntries(formData.entries());
-    addTask.uid = user.uid;
-    const toastId = toast.loading("Adding Task");
-    setLoading(true);
-    console.log(addTask);
+    const updatedTask = Object.fromEntries(formData.entries());
+    updatedTask.uid = user.uid;
 
-    fetch("http://localhost:5000/allTasks",{
-      method: "POST",
+    const toastId = toast.loading("Updating Task...");
+    setLoading(true);
+
+    fetch(`http://localhost:5000/allTasks/${userData?._id}`, {
+      method: "PUT",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(addTask),
+      body: JSON.stringify(updatedTask),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
-          toast.success("Task Added Successfully", { id: toastId });
-          setLoading(false);
-          form.reset();
+        if (data.modifiedCount > 0) {
+          toast.success("Task Updated Successfully", { id: toastId });
+        } else {
+          toast.error("No changes made", { id: toastId });
         }
+        setLoading(false);
+      })
+      .catch(() => {
+        toast.error("Failed to update task", { id: toastId });
+        setLoading(false);
       });
   };
 
   return (
     <div className="my-10 px-4">
       <form
-        onSubmit={handleAddTask}
+        onSubmit={handleUpdateTask}
         className="max-w-2xl mx-auto p-8 bg-base-100 rounded-2xl shadow-lg border border-base-300 space-y-6"
       >
         <h2 className="text-3xl font-bold text-center text-green-800">
-          Create a New Task
+          Update Task
         </h2>
 
         <div className="form-control">
@@ -48,7 +55,7 @@ const AddTask = () => {
           <input
             name="title"
             type="text"
-            placeholder="Enter task title"
+            defaultValue={userData?.title}
             className="input input-bordered w-full"
             required
           />
@@ -59,12 +66,10 @@ const AddTask = () => {
           <select
             name="category"
             className="select select-bordered w-full"
-            defaultValue=""
+            defaultValue={userData?.category}
             required
           >
-            <option value="" disabled>
-              Select a category
-            </option>
+            <option value="" disabled>Select a category</option>
             <option>Web Development</option>
             <option>Design</option>
             <option>Writing</option>
@@ -77,10 +82,8 @@ const AddTask = () => {
           <input
             name="bidsCount"
             type="number"
-            value={0}
-            placeholder="Enter Bids Count"
+            defaultValue={userData?.bidsCount || 0}
             className="input input-bordered w-full"
-            required
             readOnly
           />
         </div>
@@ -90,8 +93,8 @@ const AddTask = () => {
           <textarea
             name="description"
             className="textarea textarea-bordered w-full"
-            placeholder="Describe what needs to be done"
             rows="4"
+            defaultValue={userData?.description}
             required
           ></textarea>
         </div>
@@ -102,6 +105,7 @@ const AddTask = () => {
             <input
               name="deadline"
               type="date"
+              defaultValue={userData?.deadline}
               className="input input-bordered w-full"
               required
             />
@@ -112,7 +116,7 @@ const AddTask = () => {
             <input
               name="budget"
               type="number"
-              placeholder="Enter budget"
+              defaultValue={userData?.budget}
               className="input input-bordered w-full"
               required
             />
@@ -125,11 +129,9 @@ const AddTask = () => {
             <input
               type="text"
               value={user?.displayName || ""}
-              readOnly
               className="input input-bordered bg-base-200 w-full"
               disabled
             />
-            {/* Hidden input to send userName in form data */}
             <input
               type="hidden"
               name="userName"
@@ -142,12 +144,14 @@ const AddTask = () => {
             <input
               type="email"
               value={user?.email || ""}
-              readOnly
               className="input input-bordered bg-base-200 w-full"
               disabled
             />
-            {/* Hidden input to send userEmail in form data */}
-            <input type="hidden" name="userEmail" value={user?.email || ""} />
+            <input
+              type="hidden"
+              name="userEmail"
+              value={user?.email || ""}
+            />
           </div>
         </div>
 
@@ -157,7 +161,7 @@ const AddTask = () => {
             type="submit"
             className="btn bg-green-800 text-white w-full text-base font-semibold hover:brightness-110 transition duration-200"
           >
-            Add Task
+            {loading ? "Updating..." : "Update Task"}
           </button>
         </div>
       </form>
@@ -165,4 +169,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default UpdateTaskPage;

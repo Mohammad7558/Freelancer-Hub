@@ -10,6 +10,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Loader from "../components/Loader/Loader";
 import BrowseTaskDetails from "../Pages/BrowseTaskDetails/BrowseTaskDetails";
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
+import UpdateTaskPage from "../Pages/UpdateTaskPage/UpdateTaskPage";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,12 @@ export const router = createBrowserRouter([
                 element: <PrivateRoutes><MyPostedTasks/></PrivateRoutes>,
                 hydrateFallbackElement: <Loader/>,
                 loader: ({params}) => fetch(`http://localhost:5000/myPostedTasks/${params.id}`)
+            },
+            {
+                path: '/update/:id',
+                element: <PrivateRoutes><UpdateTaskPage/></PrivateRoutes>,
+                hydrateFallbackElement: <Loader/>,
+                loader: ({params}) => fetch(`http://localhost:5000/allTasks/${params.id}`)
             },
             {
                 path: '/login',
