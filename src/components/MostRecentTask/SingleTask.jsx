@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleTask = ({ singleTask }) => {
-  const { category, deadline, description, title, userEmail, userName } =
+  const { category, deadline, description, title, userEmail, userName, budget } =
     singleTask;
 
   return (
@@ -16,10 +16,19 @@ const SingleTask = ({ singleTask }) => {
             {new Date(deadline).toLocaleDateString()}
           </p>
           <p>
-            🗂️ <span className="font-semibold text-neutral">Category:</span>
-            <Link className="px-3 py-[3px] text-[13px] bg-blue-100 rounded-full mx-3 text-blue-400" to=''>{category}</Link>
+            🗂️ <span className="font-semibold text-neutral">Category:</span>{" "}
+            <Link
+              className="px-3 py-[3px] text-[13px] bg-blue-100 rounded-full mx-3 text-blue-400"
+              to=""
+            >
+              {category}
+            </Link>
           </p>
-          <div className="border-t pt-2  mt-5">
+          <p>
+            💰 <span className="font-semibold text-neutral">Budget: </span>
+            {budget ? `$${budget}` : "Not specified"}
+          </p>
+          <div className="border-t pt-2 mt-5">
             <p className="font-semibold text-neutral">Assigned by:</p>
             <p className="text-gray-800">{userName}</p>
             <p className="text-gray-500 italic text-xs">{userEmail}</p>

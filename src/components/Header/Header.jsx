@@ -57,7 +57,7 @@ const Header = () => {
                   className={({ isActive }) =>
                     isActive ? "btn bg-green-800 text-white" : "btn"
                   }
-                  to="/myPostedTasks"
+                  to={`/myPostedTasks/${user?.uid}`}
                 >
                   My Posted Task
                 </NavLink>
@@ -158,7 +158,7 @@ const Header = () => {
                 className={({ isActive }) =>
                   isActive ? "btn btn-primary w-full" : "btn w-full"
                 }
-                to="/myPostedTasks"
+                to={`/myPostedTasks/${user?.uid}`}
               >
                 My Posted Task
               </NavLink>

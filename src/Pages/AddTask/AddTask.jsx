@@ -11,9 +11,10 @@ const AddTask = () => {
     const form = e.target;
     const formData = new FormData(form);
     const addTask = Object.fromEntries(formData.entries());
-
+    addTask.uid = user.uid;
     const toastId = toast.loading("Adding Task");
     setLoading(true);
+    console.log(addTask);
 
     fetch("http://localhost:5000/allTasks", {
       method: "POST",

@@ -7,6 +7,8 @@ import BrowseTasks from "../Pages/BrowseTasks/BrowseTasks";
 import MyPostedTasks from "../Pages/MyPostedTasks/MyPostedTasks";
 import Login from "../Pages/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
+import Loader from "../components/Loader/Loader";
+import BrowseTaskDetails from "../Pages/BrowseTaskDetails/BrowseTaskDetails";
 
 export const router = createBrowserRouter([
     {
@@ -23,11 +25,22 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'browseTask',
-                Component: BrowseTasks
+                Component: BrowseTasks,
+                hydrateFallbackElement: <Loader/>,
+                loader: () => fetch('http://localhost:5000/browseTask')
             },
             {
-                path: '/myPostedTasks',
-                element: <PrivateRoutes><MyPostedTasks/></PrivateRoutes>
+                path: '/browseTask/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/browseTask/${params.id}`),
+                hydrateFallbackElement: <Loader/>,
+                element: <PrivateRoutes><BrowseTaskDetails/></PrivateRoutes>
+
+            },
+            {
+                path: '/myPostedTasks/:id',
+                element: <PrivateRoutes><MyPostedTasks/></PrivateRoutes>,
+                hydrateFallbackElement: <Loader/>,
+                loader: ({params}) => fetch(`http://localhost:5000/myPostedTasks/${params.id}`)
             },
             {
                 path: '/login',
