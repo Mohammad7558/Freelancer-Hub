@@ -1,7 +1,7 @@
 import React from "react";
 
-const SinglePostedTask = ({ singleData }) => {
-  const { title, category, deadline, budget, bidsCount } = singleData;
+const SinglePostedTask = ({ singleData, handleDeleteUserTaskData }) => {
+  const { _id, title, category, deadline, budget, bidsCount } = singleData;
 
   return (
     <tr className="hover:bg-base-100 transition duration-200">
@@ -13,7 +13,7 @@ const SinglePostedTask = ({ singleData }) => {
         <button className="btn btn-sm btn-outline btn-primary transition-transform hover:scale-105">
           Update
         </button>
-        <button className="btn btn-sm btn-outline btn-error transition-transform hover:scale-105">
+        <button onClick={() => handleDeleteUserTaskData(_id)} className="btn btn-sm btn-outline btn-error transition-transform hover:scale-105">
           Delete
         </button>
         <button className="btn btn-sm btn-outline btn-accent transition-transform hover:scale-105">
