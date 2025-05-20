@@ -3,46 +3,47 @@ import React from 'react';
 const Service = () => {
   const services = [
     {
-      title: "Wedding Planning",
-      icon: "💍",
-      description: "Creating unforgettable weddings tailored to your vision and traditions.",
+      title: "Web Development",
+      icon: "💻",
+      description: "Get responsive and high-performing websites built by expert developers.",
     },
     {
-      title: "Corporate Events",
-      icon: "🏢",
-      description: "Professional planning for conferences, meetings, and business celebrations.",
+      title: "Graphic Design",
+      icon: "🎨",
+      description: "Creative logos, branding, and visuals to elevate your business identity.",
     },
     {
-      title: "Birthday Parties",
-      icon: "🎉",
-      description: "Fun and personalized birthday celebrations for all ages.",
+      title: "Content Writing",
+      icon: "✍️",
+      description: "Engaging blog posts, articles, and website copy tailored to your audience.",
     },
     {
-      title: "Concert Management",
-      icon: "🎤",
-      description: "Seamless execution of live music events and large-scale performances.",
+      title: "Digital Marketing",
+      icon: "📈",
+      description: "Boost your online presence with SEO, social media, and PPC experts.",
     },
     {
-      title: "Product Launches",
-      icon: "🚀",
-      description: "Planning and execution of successful product launches with a lasting impact.",
+      title: "Mobile App Development",
+      icon: "📱",
+      description: "Custom mobile apps for iOS and Android, built to scale your business.",
     },
     {
-      title: "Trade Shows",
-      icon: "🏷️",
-      description: "End-to-end management of trade show booths, displays, and presentations.",
+      title: "Virtual Assistance",
+      icon: "🧑‍💼",
+      description: "Reliable administrative support to help you stay organized and productive.",
     },
     {
-      title: "Charity Events",
-      icon: "🤝",
-      description: "Organizing charity fundraisers and events to support important causes.",
+      title: "Video Editing",
+      icon: "🎬",
+      description: "Professional video editing for YouTube, social media, and marketing.",
     },
     {
-      title: "Team Building Activities",
-      icon: "🤸‍♂️",
-      description: "Creative and engaging team-building events to foster collaboration and communication.",
+      title: "UI/UX Design",
+      icon: "🖌️",
+      description: "User-focused design to enhance usability and visual appeal across platforms.",
     },
   ];
+
   return (
     <section className="bg-gray-100 py-20 px-6 md:px-20 my-20">
       <h2 className="text-3xl font-bold text-center mb-16">Our Services</h2>

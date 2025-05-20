@@ -73,6 +73,19 @@ const AddTask = () => {
         </div>
 
         <div className="form-control">
+          <label className="block text-sm font-medium mb-1">Bids Count</label>
+          <input
+            name="bidsCount"
+            type="number"
+            value={0}
+            placeholder="Enter Bids Count"
+            className="input input-bordered w-full"
+            required
+            readOnly
+          />
+        </div>
+
+        <div className="form-control">
           <label className="block text-sm font-medium mb-1">Description</label>
           <textarea
             name="description"

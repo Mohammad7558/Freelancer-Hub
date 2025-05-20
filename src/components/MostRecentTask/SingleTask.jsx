@@ -2,8 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleTask = ({ singleTask }) => {
-  const { category, deadline, description, title, userEmail, userName, budget } =
-    singleTask;
+  const {
+    _id,
+    category,
+    deadline,
+    description,
+    title,
+    userEmail,
+    userName,
+    budget,
+  } = singleTask;
 
   return (
     <div className="card bg-base-100 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300">
@@ -28,11 +36,14 @@ const SingleTask = ({ singleTask }) => {
             💰 <span className="font-semibold text-neutral">Budget: </span>
             {budget ? `$${budget}` : "Not specified"}
           </p>
-          <div className="border-t pt-2 mt-5">
-            <p className="font-semibold text-neutral">Assigned by:</p>
-            <p className="text-gray-800">{userName}</p>
+          <div className="border-t border-gray-300 pt-4 mt-6">
+            <p className="text-sm font-medium text-gray-600 uppercase tracking-wide">
+              Assigned by
+            </p>
+            <p className="mt-1 text-gray-900 font-semibold">{userName}</p>
             <p className="text-gray-500 italic text-xs">{userEmail}</p>
           </div>
+          <Link to={`/details/${_id}`}><button className="btn bg-green-800 text-white">Show Details</button></Link>
         </div>
       </div>
     </div>

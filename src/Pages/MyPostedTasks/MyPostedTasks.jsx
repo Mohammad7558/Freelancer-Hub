@@ -4,30 +4,37 @@ import SinglePostedTask from "./SinglePostedTask";
 
 const MyPostedTasks = () => {
   const userData = useLoaderData();
-  console.log(userData);
+
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="p-4">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
+        My Posted Tasks
+      </h2>
+
       {userData.length === 0 ? (
-        <>
-        <h1 className="text-3xl font-bold text-center">No Posted Task</h1>
-        </>
+        <div className="text-center mt-10">
+          <h1 className="text-3xl font-semibold text-gray-600">No Posted Tasks Found</h1>
+          <p className="text-gray-500 mt-2">You haven’t posted any tasks yet.</p>
+        </div>
       ) : (
-        <table className="table table-zebra w-full">
-          <thead className="bg-base-200 text-base-content">
-            <tr>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Budget</th>
-              <th>Deadline</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userData.map((singleData) => (
-              <SinglePostedTask key={singleData._id} singleData={singleData} />
-            ))}
-          </tbody>
-        </table>
+        <div className="overflow-x-auto rounded-xl shadow-md bg-white">
+          <table className="table table-zebra w-full text-sm md:text-base">
+            <thead className="bg-base-200 text-base font-semibold text-gray-800">
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Budget</th>
+                <th>Deadline</th>
+                <th className="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userData.map((singleData) => (
+                <SinglePostedTask key={singleData._id} singleData={singleData} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

@@ -1,39 +1,56 @@
 import React from 'react';
-import { FaUsers, FaClipboardCheck, FaHandshake, FaUserFriends, FaMoneyCheckAlt, FaHeadset, FaPaintBrush, FaClock } from 'react-icons/fa';
+import {
+  FaUsers,
+  FaClipboardCheck,
+  FaHandshake,
+  FaUserFriends,
+  FaMoneyCheckAlt,
+  FaHeadset,
+  FaPaintBrush,
+  FaClock,
+} from 'react-icons/fa';
 
 const WhyChooseUs = () => {
   const points = [
     {
-      title: "Professional & Experienced Team",
+      title: "Skilled & Verified Freelancers",
       icon: <FaUsers className="text-3xl text-indigo-600 mb-4" />,
+      description: "Connect with top-rated freelancers who are verified for skills and professionalism.",
     },
     {
-      title: "Tailored Event Planning",
+      title: "Easy Project Management",
       icon: <FaClipboardCheck className="text-3xl text-indigo-600 mb-4" />,
+      description: "Track milestones, deadlines, and deliverables with intuitive tools.",
     },
     {
-      title: "Reliable Vendor Network",
-      icon: <FaHandshake className="text-3xl text-indigo-600 mb-4" />,
-    },
-    {
-      title: "Customer-Centric Approach",
-      icon: <FaUserFriends className="text-3xl text-indigo-600 mb-4" />,
-    },
-    {
-      title: "Affordable Packages",
+      title: "Secure Payments",
       icon: <FaMoneyCheckAlt className="text-3xl text-indigo-600 mb-4" />,
+      description: "Enjoy peace of mind with escrow payments and transparent transactions.",
     },
     {
-      title: "24/7 Customer Support",
+      title: "Diverse Talent Pool",
+      icon: <FaUserFriends className="text-3xl text-indigo-600 mb-4" />,
+      description: "Access professionals from all over the world across multiple industries.",
+    },
+    {
+      title: "Reliable Collaboration",
+      icon: <FaHandshake className="text-3xl text-indigo-600 mb-4" />,
+      description: "Seamless communication tools to keep freelancers and clients aligned.",
+    },
+    {
+      title: "24/7 Support",
       icon: <FaHeadset className="text-3xl text-indigo-600 mb-4" />,
+      description: "Our dedicated support team is always here to help, anytime you need.",
     },
     {
-      title: "Creative Design & Themes",
+      title: "Creative & Technical Experts",
       icon: <FaPaintBrush className="text-3xl text-indigo-600 mb-4" />,
+      description: "Find experts for everything from design and marketing to software development.",
     },
     {
-      title: "On-Time Execution",
+      title: "On-Time Delivery",
       icon: <FaClock className="text-3xl text-indigo-600 mb-4" />,
+      description: "Freelancers committed to delivering high-quality work on time, every time.",
     },
   ];
 
@@ -49,9 +66,7 @@ const WhyChooseUs = () => {
             <div className="flex flex-col items-start">
               {point.icon}
               <h3 className="text-lg font-semibold text-gray-800 mb-2">{point.title}</h3>
-              <p className="text-gray-600 text-sm">
-                We provide exceptional service to make your events truly memorable and stress-free.
-              </p>
+              <p className="text-gray-600 text-sm">{point.description}</p>
             </div>
           </li>
         ))}
