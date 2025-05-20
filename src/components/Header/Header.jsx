@@ -22,17 +22,13 @@ const Header = () => {
 
   return (
     <>
-      {/* Top Navbar */}
       <nav className="bg-gray-100 shadow py-4">
         <section className="w-11/12 mx-auto flex justify-between items-center">
-          {/* Logo */}
           <div>
             <Link to="/">
               <img src={logo} alt="Logo" className="h-10" />
             </Link>
           </div>
-
-          {/* Desktop Nav Links */}
           <div className="hidden lg:flex gap-x-4">
             <NavLink
               className={({ isActive }) =>
@@ -42,7 +38,6 @@ const Header = () => {
             >
               Home
             </NavLink>
-
             {user && (
               <>
                 <NavLink
@@ -73,8 +68,6 @@ const Header = () => {
               Browse Task
             </NavLink>
           </div>
-
-          {/* Right Section */}
           <div className="flex items-center gap-3">
             {user ? (
               <div
@@ -82,7 +75,6 @@ const Header = () => {
                 onMouseEnter={() => setDropdownOpen(true)}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
-                {/* Avatar */}
                 <div className="avatar cursor-pointer">
                   <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img
@@ -91,8 +83,6 @@ const Header = () => {
                     />
                   </div>
                 </div>
-
-                {/* Dropdown on Hover */}
                 {dropdownOpen && (
                   <div className="absolute top-10 right-0 bg-white shadow-lg rounded-lg p-3 w-48 z-50">
                     <p className="text-sm font-semibold mb-2 text-gray-700">
@@ -123,8 +113,6 @@ const Header = () => {
                 </Link>
               </>
             )}
-
-            {/* Hamburger Menu */}
             <button
               className="lg:hidden text-2xl"
               onClick={() => setDrawerOpen(true)}
@@ -134,8 +122,6 @@ const Header = () => {
           </div>
         </section>
       </nav>
-
-      {/* Drawer Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
@@ -148,7 +134,6 @@ const Header = () => {
           >
             <FaX />
           </button>
-
           <NavLink
             onClick={() => setDrawerOpen(false)}
             className={({ isActive }) =>
