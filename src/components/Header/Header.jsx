@@ -7,6 +7,7 @@ import { AuthContext } from "../../provider/AuthContext";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logOutUser } = useContext(AuthContext);
 
   const logout = () => {
@@ -22,7 +23,7 @@ const Header = () => {
   return (
     <>
       {/* Top Navbar */}
-      <nav className="bg-gray-100 backdrop-blur-2xl shadow py-4">
+      <nav className="bg-gray-100 shadow py-4">
         <section className="w-11/12 mx-auto flex justify-between items-center">
           {/* Logo */}
           <div>
@@ -42,7 +43,6 @@ const Header = () => {
               Home
             </NavLink>
 
-            {/* Show only if user is logged in */}
             {user && (
               <>
                 <NavLink
@@ -64,7 +64,6 @@ const Header = () => {
               </>
             )}
 
-            {/* Always visible */}
             <NavLink
               className={({ isActive }) =>
                 isActive ? "btn bg-green-800 text-white" : "btn"
@@ -76,30 +75,50 @@ const Header = () => {
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {user ? (
-              <>
-                {/* User Avatar with Tooltip */}
-                <div className="tooltip tooltip-left" data-tip={user.displayName}>
-                  <div className="avatar">
-                    <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                      <img src={user.photoURL} alt="User Avatar" />
-                    </div>
+              <div
+                className="relative"
+                onMouseEnter={() => setDropdownOpen(true)}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
+                {/* Avatar */}
+                <div className="avatar cursor-pointer">
+                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img
+                      src={user.photoURL || "https://i.ibb.co/2yVVxYk/default-avatar.png"}
+                      alt="User Avatar"
+                    />
                   </div>
                 </div>
-                <button
-                  onClick={logout}
-                  className="btn bg-red-500 normal-case text-white hidden lg:inline-flex"
-                >
-                  Log out
-                </button>
-              </>
+
+                {/* Dropdown on Hover */}
+                {dropdownOpen && (
+                  <div className="absolute top-10 right-0 bg-white shadow-lg rounded-lg p-3 w-48 z-50">
+                    <p className="text-sm font-semibold mb-2 text-gray-700">
+                      {user.displayName || "User"}
+                    </p>
+                    <button
+                      onClick={logout}
+                      className="btn btn-sm btn-error text-white w-full"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <>
-                <Link to="/login" className="btn bg-green-800 text-white hidden lg:inline-flex">
+                <Link
+                  to="/login"
+                  className="btn bg-green-800 text-white hidden lg:inline-flex"
+                >
                   Login
                 </Link>
-                <Link to="/register" className="btn btn-outline text-black hidden lg:inline-flex">
+                <Link
+                  to="/register"
+                  className="btn btn-outline text-black hidden lg:inline-flex"
+                >
                   Signup
                 </Link>
               </>
@@ -130,7 +149,6 @@ const Header = () => {
             <FaX />
           </button>
 
-          {/* Mobile Nav Links */}
           <NavLink
             onClick={() => setDrawerOpen(false)}
             className={({ isActive }) =>
@@ -141,7 +159,6 @@ const Header = () => {
             Home
           </NavLink>
 
-          {/* Show only if user is logged in */}
           {user && (
             <>
               <NavLink
@@ -165,7 +182,6 @@ const Header = () => {
             </>
           )}
 
-          {/* Always visible */}
           <NavLink
             onClick={() => setDrawerOpen(false)}
             className={({ isActive }) =>
@@ -176,7 +192,6 @@ const Header = () => {
             Browse Task
           </NavLink>
 
-          {/* Conditional Buttons for Drawer */}
           {user ? (
             <button
               onClick={() => {

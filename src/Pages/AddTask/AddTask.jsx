@@ -16,7 +16,7 @@ const AddTask = () => {
     setLoading(true);
     console.log(addTask);
 
-    fetch("http://localhost:5000/allTasks", {
+    fetch("http://localhost:5000/allTasks",{
       method: "POST",
       headers: {
         "content-type": "application/json",
