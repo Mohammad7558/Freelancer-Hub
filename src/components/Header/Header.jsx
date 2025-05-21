@@ -32,10 +32,10 @@ const Header = () => {
   const logout = () => {
     logOutUser()
       .then(() => {
-        toast.success('Logged out successfully')
+        toast.success("Logged out successfully");
       })
       .catch((error) => {
-        toast.error("Logout error:", error)
+        toast.error("Logout error:", error);
       });
   };
 
@@ -136,18 +136,20 @@ const Header = () => {
               </>
             )}
 
-            <button>
-              <label className="flex cursor-pointer gap-2">
-                <FiSun size={20} />
-                <input
-                  type="checkbox"
-                  onChange={handleToggle}
-                  checked={theme === "dark"}
-                  className="toggle theme-controller"
-                />
-                <FiMoon size={20} />
-              </label>
-            </button>
+            <label className="swap swap-rotate cursor-pointer">
+              <input
+                type="checkbox"
+                onChange={handleToggle}
+                checked={theme === "dark"}
+                className="hidden"
+              />
+
+              {/* Sun icon */}
+              <FiSun className="swap-off h-6 w-6 text-yellow-400" />
+
+              {/* Moon icon */}
+              <FiMoon className="swap-on h-6 w-6 text-gray-300" />
+            </label>
 
             <button
               className="lg:hidden text-2xl"
@@ -158,7 +160,6 @@ const Header = () => {
           </div>
         </section>
       </nav>
-
 
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
@@ -245,7 +246,6 @@ const Header = () => {
           )}
         </div>
       </div>
-
 
       {drawerOpen && (
         <div
