@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
-import { FaEye, FaGoogle } from "react-icons/fa";
-import { Link, useLocation, useNavigate} from "react-router-dom";
-import { LuEyeClosed } from "react-icons/lu";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { FaEye, FaGoogle } from "react-icons/fa";
+import { LuEyeClosed } from "react-icons/lu";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthContext";
 
 const Register = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const {createUserWithEmailPass, createUserWithGoogle, setUser, updateUser} = useContext(AuthContext);
+  const { createUserWithEmailPass, createUserWithGoogle, setUser, updateUser } =
+    useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/';
-
+  const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -28,74 +28,67 @@ const Register = () => {
     const haveUpperCase = /[A-Z]/;
     const haveLowerCase = /[a-z]/;
 
-    if(userName == ''){
-      return toast.error('Enter Your Name')
-    }
-    else if(photoLink == ''){
-      return toast.error('Enter Your Photo Url')
-    }
-    else if(email == ''){
-      return toast.error('Enter Email')
-    }
-    else if(password == ''){
-      return toast.error('Write A Password')
-    }
-    else if(password.length < 6){
-      return toast.error('Password Must Be 6 Character Long')
-    }
-    else if(!haveLowerCase.test(password)){
-      return toast.error('Password Must Have An Lowercase')
-    }
-    else if(!haveUpperCase.test(password)){
-      return toast.error('Password Must Have An Uppercase')
+    if (userName == "") {
+      return toast.error("Enter Your Name");
+    } else if (photoLink == "") {
+      return toast.error("Enter Your Photo Url");
+    } else if (email == "") {
+      return toast.error("Enter Email");
+    } else if (password == "") {
+      return toast.error("Write A Password");
+    } else if (password.length < 6) {
+      return toast.error("Password Must Be 6 Character Long");
+    } else if (!haveLowerCase.test(password)) {
+      return toast.error("Password Must Have An Lowercase");
+    } else if (!haveUpperCase.test(password)) {
+      return toast.error("Password Must Have An Uppercase");
     }
 
-    const toastId = toast.loading('Creating User')
-    
+    const toastId = toast.loading("Creating User");
+
     createUserWithEmailPass(email, password)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
-        const {uid, email} = user;
-        const newUser = {uid, email}
-        fetch('http://localhost:5000/users', {
-          method: 'POST',
+        const { uid, email } = user;
+        const newUser = { uid, email };
+        fetch("https://assignment-10-server-side-psi-eight.vercel.app/users", {
+          method: "POST",
           headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json",
           },
-          body: JSON.stringify(newUser)
+          body: JSON.stringify(newUser),
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        updateUser({displayName: userName, photoURL: photoLink})
-        .then(() => {
-            setUser({...user, displayName: userName, photoURL: photoLink})
-        })
-        .catch(error => {
-            toast.error(error.message)
-        })
-        toast.dismiss()
-        toast.success('User Created Successfully', {id: toastId})
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+        updateUser({ displayName: userName, photoURL: photoLink })
+          .then(() => {
+            setUser({ ...user, displayName: userName, photoURL: photoLink });
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
+        toast.dismiss();
+        toast.success("User Created Successfully", { id: toastId });
         navigate(from, { replace: true });
-        e.target.reset()
-    })
-    .catch(error => {
-        toast.error(error.message, {id: toastId})
-    })
+        e.target.reset();
+      })
+      .catch((error) => {
+        toast.error(error.message, { id: toastId });
+      });
   };
 
   const handleRegisterWithGoogle = () => {
-    const toastId = toast.loading('Creating User')
+    const toastId = toast.loading("Creating User");
     createUserWithGoogle(provider)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
         navigate(from, { replace: true });
-        toast.success('User create Successfully', {id: toastId})
-    })
-    .catch(error => {
-        toast.error(error.message, {id: toastId})
-    })
-  }
-
+        toast.success("User create Successfully", { id: toastId });
+      })
+      .catch((error) => {
+        toast.error(error.message, { id: toastId });
+      });
+  };
 
   return (
     <div className="relative bg-gray-100 py-20 px-10 overflow-hidden min-h-screen flex items-center justify-center">

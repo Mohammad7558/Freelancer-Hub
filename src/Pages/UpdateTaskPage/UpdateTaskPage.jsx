@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../provider/AuthContext";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthContext";
 
 const UpdateTaskPage = () => {
   const userData = useLoaderData();
@@ -18,13 +18,16 @@ const UpdateTaskPage = () => {
     const toastId = toast.loading("Updating Task...");
     setLoading(true);
 
-    fetch(`http://localhost:5000/allTasks/${userData?._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedTask),
-    })
+    fetch(
+      `https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${userData?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedTask),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -69,7 +72,9 @@ const UpdateTaskPage = () => {
             defaultValue={userData?.category}
             required
           >
-            <option value="" disabled>Select a category</option>
+            <option value="" disabled>
+              Select a category
+            </option>
             <option>Web Development</option>
             <option>Design</option>
             <option>Writing</option>
@@ -147,11 +152,7 @@ const UpdateTaskPage = () => {
               className="input input-bordered bg-base-200 w-full"
               disabled
             />
-            <input
-              type="hidden"
-              name="userEmail"
-              value={user?.email || ""}
-            />
+            <input type="hidden" name="userEmail" value={user?.email || ""} />
           </div>
         </div>
 

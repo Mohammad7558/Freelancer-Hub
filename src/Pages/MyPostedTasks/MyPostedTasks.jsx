@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
-import SinglePostedTask from "./SinglePostedTask";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import SinglePostedTask from "./SinglePostedTask";
 
 const MyPostedTasks = () => {
   const userData = useLoaderData();
@@ -19,9 +19,12 @@ const MyPostedTasks = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allTasks/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -45,9 +48,7 @@ const MyPostedTasks = () => {
     <div className="p-4">
       {separateUserData.length === 0 ? (
         <div className="flex flex-col justify-center items-center text-center bg-transparent rounded-2xl shadow p-6">
-          <h1 className="text-4xl font-bold mb-2">
-            No Tasks Posted
-          </h1>
+          <h1 className="text-4xl font-bold mb-2">No Tasks Posted</h1>
           <p className="mb-6">
             It looks like you haven’t posted any tasks yet. Start by adding your
             first task.

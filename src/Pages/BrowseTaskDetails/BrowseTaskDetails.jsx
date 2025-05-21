@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import {
   FiCalendar,
-  FiUser,
-  FiTag,
-  FiMail,
   FiDollarSign,
+  FiMail,
+  FiTag,
+  FiUser,
 } from "react-icons/fi";
-import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
 const BrowseTaskDetails = () => {
   const singleTaskDetails = useLoaderData();
@@ -30,19 +30,22 @@ const BrowseTaskDetails = () => {
     const newBidsCounts = bidsCountsToNumber + 1;
     setBidsCounts(newBidsCounts);
 
-    fetch(`http://localhost:5000/allTasks/${_id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({ bidsCount: newBidsCounts })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.modifiedCount){
-        toast.success('Bids Count Successfully')
+    fetch(
+      `https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ bidsCount: newBidsCounts }),
       }
-    })
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          toast.success("Bids Count Successfully");
+        }
+      });
   };
 
   return (
@@ -51,12 +54,16 @@ const BrowseTaskDetails = () => {
         You bid for {bidsCounts} opportunities.
       </div>
       <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm dark:shadow-lg p-8 transition-colors duration-300">
-        <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-300">{title}</h1>
+        <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-300">
+          {title}
+        </h1>
 
         <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
           <div className="flex items-center gap-2">
             <FiUser className="text-blue-600 dark:text-cyan-400" />
-            <span className="font-medium text-gray-800 dark:text-gray-100">{userName}</span>
+            <span className="font-medium text-gray-800 dark:text-gray-100">
+              {userName}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <FiMail className="text-blue-600 dark:text-cyan-400" />
@@ -77,13 +84,19 @@ const BrowseTaskDetails = () => {
         </div>
 
         <div className="mt-6">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2 transition-colors duration-300">Description</h2>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors duration-300">{description}</p>
+          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2 transition-colors duration-300">
+            Description
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+            {description}
+          </p>
         </div>
 
         <div className="mt-6 flex items-center justify-between">
           <div className="text-sm text-gray-700 dark:text-gray-300 transition-colors duration-300">
-            <span className="font-medium text-gray-900 dark:text-gray-100">Total Bids:</span>{" "}
+            <span className="font-medium text-gray-900 dark:text-gray-100">
+              Total Bids:
+            </span>{" "}
             {bidsCounts}
           </div>
 

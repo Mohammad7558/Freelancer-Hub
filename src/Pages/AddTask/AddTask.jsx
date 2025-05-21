@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../../provider/AuthContext";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthContext";
 
 const AddTask = () => {
   const { user } = useContext(AuthContext);
@@ -15,7 +15,7 @@ const AddTask = () => {
     const toastId = toast.loading("Adding Task");
     setLoading(true);
 
-    fetch("http://localhost:5000/allTasks",{
+    fetch("https://assignment-10-server-side-psi-eight.vercel.app/allTasks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
