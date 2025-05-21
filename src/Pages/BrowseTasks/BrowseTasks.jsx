@@ -24,34 +24,34 @@ const BrowseTasks = () => {
         ) : (
           <Slide direction="up" cascade damping={0.1} triggerOnce>
             <div>
-            <h1 className="text-3xl font-bold text-center text-primary dark:text-cyan-400 mb-10 transition-colors duration-300">
+            <h1 className="text-3xl font-bold text-center mb-10 transition-colors duration-300">
               📋 All Tasks
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {taskData.map((task) => (
                 <div
                   key={task._id}
-                  className="card bg-white dark:bg-gray-800 shadow-md dark:shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-xl dark:hover:shadow-gray-800 transition-shadow duration-300"
+                  className="card shadow-md dark:shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-xl dark:hover:shadow-gray-800 transition-shadow duration-300"
                 >
                   <div className="card-body space-y-3 p-5">
                     <h2 className="card-title text-lg font-semibold flex items-center gap-2 text-primary dark:text-cyan-400 transition-colors duration-300">
                       📌 <span>{task.title}</span>
                     </h2>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <p className="text-sm ">
                       📝 {task.description}
                     </p>
 
-                    <div className="text-sm mt-2 space-y-1 text-gray-700 dark:text-gray-400">
+                    <div className="text-sm mt-2 space-y-1">
                       <p>
                         ⏰{" "}
-                        <span className="font-medium text-gray-800 dark:text-gray-300">
+                        <span className="font-medium ">
                           Deadline:
                         </span>{" "}
                         {new Date(task.deadline).toLocaleDateString()}
                       </p>
                       <p className="flex items-center gap-2">
                         🗂️{" "}
-                        <span className="font-medium text-gray-800 dark:text-gray-300">
+                        <span className="font-medium ">
                           Category:
                         </span>
                         <span className="px-3 py-[3px] text-xs text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-900 rounded-full select-none">
@@ -60,7 +60,7 @@ const BrowseTasks = () => {
                       </p>
                     </div>
 
-                    <div className="mt-4 border-t border-gray-200 dark:border-gray-700 pt-3 text-sm text-gray-800 dark:text-gray-300">
+                    <div className="mt-4 border-t pt-3 text-sm ">
                       <p className="font-semibold">Assigned by:</p>
                       <p>{task.userName}</p>
                       <p className="italic text-xs text-gray-500 dark:text-gray-400">
