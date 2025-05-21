@@ -16,7 +16,7 @@ const MostRecentTask = () => {
   }, []);
 
   return (
-    <div className="w-11/12 mx-auto mt-20">
+    <div className="w-11/12 mx-auto mt-20 my-20">
       {loading ? (
         <>
           <Loader />
