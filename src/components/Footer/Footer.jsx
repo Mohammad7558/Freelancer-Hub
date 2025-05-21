@@ -16,9 +16,9 @@ const Footer = () => {
             clients connecting across the globe.
           </p>
           <div className="flex gap-4 mt-4 text-xl text-primary">
-            <a href="#" className="hover:text-secondary transition-colors"><FaFacebookF /></a>
-            <a href="#" className="hover:text-secondary transition-colors"><FaTwitter /></a>
-            <a href="#" className="hover:text-secondary transition-colors"><FaLinkedinIn /></a>
+            <a href="https://www.facebook.com/imMOHAMMOD" target="_blank" className="hover:text-secondary transition-colors"><FaFacebookF /></a>
+            <a href="https://x.com/iam_MOHAMMOD" target="_blank" className="hover:text-secondary transition-colors"><FaTwitter /></a>
+            <a href="https://www.linkedin.com/in/mohammod-bin-amin-b051a0244/" target="_blank" className="hover:text-secondary transition-colors"><FaLinkedinIn /></a>
             <a href="#" className="hover:text-secondary transition-colors"><FaInstagram /></a>
           </div>
         </div>

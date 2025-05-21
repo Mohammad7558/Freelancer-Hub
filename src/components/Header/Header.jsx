@@ -26,7 +26,6 @@ const Header = () => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
-    document.querySelector("html").classList.add(localTheme);
   }, [theme]);
 
   const logout = () => {
@@ -45,7 +44,7 @@ const Header = () => {
         <section className="w-11/12 mx-auto flex justify-between items-center">
           <div>
             <Link to="/">
-              <h1 className="text-2xl font-bold">Freelancer Hub</h1>
+              <h1 className="text-2xl font-bold">FreelanceHub</h1>
             </Link>
           </div>
           <div className="hidden lg:flex gap-x-4">
@@ -129,7 +128,7 @@ const Header = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="btn btn-outline text-black hidden lg:inline-flex"
+                  className="btn btn-outline hidden lg:inline-flex"
                 >
                   Signup
                 </Link>

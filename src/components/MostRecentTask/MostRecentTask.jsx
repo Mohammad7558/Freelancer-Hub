@@ -44,7 +44,7 @@ const MostRecentTask = () => {
                 <h1 className="text-center font-bold text-4xl mb-10">
                   Most Recent Tasks
                 </h1>
-                <Slide direction="up" delay={200} duration={350} fraction={0.5} triggerOnce>
+                <Slide direction="up" delay={100} duration={400} fraction={0.1} triggerOnce>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                   {tasks.map((singleTask) => (
                     <SingleTask
