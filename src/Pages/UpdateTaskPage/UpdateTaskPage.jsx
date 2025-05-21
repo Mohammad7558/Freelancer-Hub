@@ -4,7 +4,7 @@ import { AuthContext } from "../../provider/AuthContext";
 import { useLoaderData } from "react-router-dom";
 
 const UpdateTaskPage = () => {
-  const userData = useLoaderData(); // Pre-loaded task data
+  const userData = useLoaderData();
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 

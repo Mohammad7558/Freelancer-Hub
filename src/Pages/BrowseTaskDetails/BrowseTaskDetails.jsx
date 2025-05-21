@@ -7,6 +7,7 @@ import {
   FiMail,
   FiDollarSign,
 } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 const BrowseTaskDetails = () => {
   const singleTaskDetails = useLoaderData();
@@ -38,18 +39,17 @@ const BrowseTaskDetails = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      if(data.modifiedCount){
+        toast.success('Bids Count Successfully')
+      }
     })
   };
 
   return (
     <div className="min-h-screen py-12 px-4 transition-colors duration-500">
-      {/* Top message */}
       <div className="max-w-3xl mx-auto mb-4 text-center text-lg font-medium text-blue-700 dark:text-cyan-400 transition-colors duration-300">
         You bid for {bidsCounts} opportunities.
       </div>
-
-      {/* Task details card */}
       <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm dark:shadow-lg p-8 transition-colors duration-300">
         <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-300">{title}</h1>
 

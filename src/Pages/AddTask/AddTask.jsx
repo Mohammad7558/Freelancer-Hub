@@ -14,7 +14,6 @@ const AddTask = () => {
     addTask.uid = user.uid;
     const toastId = toast.loading("Adding Task");
     setLoading(true);
-    console.log(addTask);
 
     fetch("http://localhost:5000/allTasks",{
       method: "POST",
@@ -129,7 +128,6 @@ const AddTask = () => {
               className="input input-bordered bg-base-200 w-full"
               disabled
             />
-            {/* Hidden input to send userName in form data */}
             <input
               type="hidden"
               name="userName"
@@ -146,7 +144,6 @@ const AddTask = () => {
               className="input input-bordered bg-base-200 w-full"
               disabled
             />
-            {/* Hidden input to send userEmail in form data */}
             <input type="hidden" name="userEmail" value={user?.email || ""} />
           </div>
         </div>

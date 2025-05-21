@@ -4,6 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { AuthContext } from "../../provider/AuthContext";
 import { FiMoon, FiSun } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -31,10 +32,10 @@ const Header = () => {
   const logout = () => {
     logOutUser()
       .then(() => {
-        console.log("Logged out successfully");
+        toast.success('Logged out successfully')
       })
       .catch((error) => {
-        console.error("Logout error:", error);
+        toast.error("Logout error:", error)
       });
   };
 
@@ -158,7 +159,7 @@ const Header = () => {
         </section>
       </nav>
 
-      {/* Mobile Drawer */}
+
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
@@ -245,7 +246,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Overlay */}
+
       {drawerOpen && (
         <div
           className="fixed inset-0 bg-black/10 bg-opacity-30 z-40"

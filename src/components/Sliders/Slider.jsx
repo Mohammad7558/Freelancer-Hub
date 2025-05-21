@@ -42,7 +42,6 @@ const Slider = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24">
-              {/* Text - 50% */}
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center">
                 <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-4">
                   {slide.title}
@@ -51,8 +50,6 @@ const Slider = () => {
                   {slide.subtitle}
                 </p>
               </div>
-
-              {/* Image - 50% */}
               <div className="w-full lg:w-1/2 h-full flex items-center justify-center">
                 <img
                   src={slide.image}

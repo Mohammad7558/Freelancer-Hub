@@ -9,7 +9,6 @@ const Footer = () => {
   return (
     <footer className="bg-base-200 text-base-content pt-16 pb-10 px-4 md:px-10 border-t border-base-300">
       <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4 sm:grid-cols-2">
-        {/* Logo & About */}
         <div>
           <h2 className="text-2xl font-bold text-primary mb-2">FreelanceHub</h2>
           <p className="text-sm text-base-content/70">
@@ -24,7 +23,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Quick Links */}
         <div>
           <h3 className="text-lg font-semibold text-primary mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm text-base-content/70">
@@ -35,7 +33,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Categories */}
+
         <div>
           <h3 className="text-lg font-semibold text-primary mb-3">Categories</h3>
           <ul className="space-y-2 text-sm text-base-content/70">
@@ -46,7 +44,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Newsletter */}
+
         <div>
           <h3 className="text-lg font-semibold text-primary mb-3">Stay Updated</h3>
           <p className="text-sm text-base-content/70 mb-3">
@@ -61,7 +59,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom */}
       <div className="mt-12 border-t border-base-300 pt-6 text-center text-sm text-base-content/50">
         © {new Date().getFullYear()} <span className="font-semibold text-primary">FreelanceHub</span>. All rights reserved.
       </div>
