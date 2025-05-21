@@ -64,7 +64,7 @@ const categories = [
 
 const CategoryGrid = () => {
   return (
-    <Slide direction="up" delay={200} duration={350} fraction={0.5} triggerOnce>
+    <Slide direction="up" delay={100} duration={400} fraction={0.1} triggerOnce>
       <section className="px-4 py-16 md:px-20 bg-base-100 transition-all duration-300">
         <h2 className="text-4xl font-bold text-center mb-14 text-base-content">
           Explore Services by Category
