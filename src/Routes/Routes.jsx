@@ -11,6 +11,7 @@ import Loader from "../components/Loader/Loader";
 import BrowseTaskDetails from "../Pages/BrowseTaskDetails/BrowseTaskDetails";
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 import UpdateTaskPage from "../Pages/UpdateTaskPage/UpdateTaskPage";
+import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 
 export const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 Component: Register
+            },
+            {
+                path: '/terms',
+                Component: TermsAndCondition
             }
         ]
     }
