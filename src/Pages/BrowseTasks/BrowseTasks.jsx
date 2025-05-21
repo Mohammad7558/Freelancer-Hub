@@ -9,10 +9,10 @@ const BrowseTasks = () => {
       <div className=" mx-auto px-4 py-8 min-h-screen  transition-colors duration-500">
         {taskData.length === 0 ? (
           <div className="text-center my-10 h-[60vh] flex flex-col justify-center items-center">
-            <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-300">
+            <h1 className="text-3xl font-semibold ">
               No Tasks Found
             </h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">
+            <p className="mt-2">
               You haven’t posted any tasks yet.
             </p>
             <img

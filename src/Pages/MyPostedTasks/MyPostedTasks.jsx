@@ -45,20 +45,21 @@ const MyPostedTasks = () => {
     <div className="p-4">
       {separateUserData.length === 0 ? (
         <div className="text-center my-10 h-[60vh] flex flex-col justify-center items-center">
-          <h1 className="text-3xl font-semibold text-gray-600">
+          <h1 className="text-3xl font-semibold">
             No Posted Tasks Found
           </h1>
-          <p className="text-gray-500 mt-2">
+          <p className="mt-2">
             You haven’t posted any tasks yet.
           </p>
-          <img className="w-[500px] mt-5" src="https://i.ibb.co/6Rvw7LQG/hand-drawn-no-data-concept-52683-127823.jpg" alt="" />
+          <img className="w-[500px] mt-5" src="https://i.ibb.co/TDQrPfG2/hand-drawn-no-data-concept-52683-127823-removebg-preview.png" alt="" />
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl shadow-md">
+        <div className="h-[70vh]">
+          <div className="overflow-x-auto rounded-xl shadow-md mx-10 mt-10">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
             My Posted Tasks
           </h2>
-          <table className="table table-zebra w-full text-sm md:text-base">
+          <table className="table table-zebra text-sm md:text-base">
             <thead className="bg-base-200 text-base font-semibold">
               <tr>
                 <th>Title</th>
@@ -78,6 +79,7 @@ const MyPostedTasks = () => {
               ))}
             </tbody>
           </table>
+        </div>
         </div>
       )}
     </div>
