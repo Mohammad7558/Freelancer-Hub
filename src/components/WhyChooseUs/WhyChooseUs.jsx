@@ -71,7 +71,7 @@ const CategoryGrid = () => {
             >
               <div className="flex flex-col items-start gap-4">
                 <div className="bg-white/10 rounded-full w-14 h-14 flex items-center justify-center shadow-inner group-hover:bg-white/20 transition-all">
-                  <Icon className="text-2xl text-blue-800 dark:text-white" />
+                  <Icon className="text-2xl" />
                 </div>
                 <h3 className="text-lg font-semibold text-base-content group-hover:text-primary">
                   {cat.title}

@@ -42,28 +42,24 @@ const MyPostedTasks = () => {
   };
 
   return (
-    <div className="p-4 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div className="p-4">
       {separateUserData.length === 0 ? (
         <div className="text-center my-10 h-[60vh] flex flex-col justify-center items-center">
-          <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-300">
+          <h1 className="text-3xl font-semibold text-gray-600">
             No Posted Tasks Found
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">
+          <p className="text-gray-500 mt-2">
             You haven’t posted any tasks yet.
           </p>
-          <img
-            className="w-[500px] mt-5"
-            src="https://i.ibb.co/TDQrPfG2/hand-drawn-no-data-concept-52683-127823-removebg-preview.png"
-            alt="No Data Illustration"
-          />
+          <img className="w-[500px] mt-5" src="https://i.ibb.co/6Rvw7LQG/hand-drawn-no-data-concept-52683-127823.jpg" alt="" />
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl shadow-md bg-white dark:bg-gray-800 transition-colors duration-300">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary dark:text-cyan-400">
+        <div className="overflow-x-auto rounded-xl shadow-md bg-white">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
             My Posted Tasks
           </h2>
           <table className="table table-zebra w-full text-sm md:text-base">
-            <thead className="bg-gray-100 dark:bg-gray-700 text-base font-semibold text-gray-800 dark:text-gray-200">
+            <thead className="bg-base-200 text-base font-semibold text-gray-800">
               <tr>
                 <th>Title</th>
                 <th>Category</th>

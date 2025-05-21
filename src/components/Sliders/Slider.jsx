@@ -29,7 +29,7 @@ const slides = [
 
 const Slider = () => {
   return (
-    <section className="relative bg-white dark:bg-gray-800 transition-colors duration-500">
+    <section className="relative">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={30}
@@ -42,23 +42,23 @@ const Slider = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24">
-              {/* Text Section */}
+              {/* Text - 50% */}
               <div className="w-full lg:w-1/2 h-full flex flex-col justify-center">
-                <h2 className="text-3xl md:text-5xl font-semibold text-gray-900 dark:text-white leading-tight mb-4">
+                <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-4">
                   {slide.title}
                 </h2>
-                <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-md">
+                <p className="text-lg md:text-xl max-w-md">
                   {slide.subtitle}
                 </p>
               </div>
 
-              {/* Image Section */}
+              {/* Image - 50% */}
               <div className="w-full lg:w-1/2 h-full flex items-center justify-center">
                 <img
                   src={slide.image}
                   alt={slide.title}
                   loading="lazy"
-                  className="w-full rounded-xl shadow-md dark:shadow-lg"
+                  className="w-full rounded-xl shadow-md"
                 />
               </div>
             </div>

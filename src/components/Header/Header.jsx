@@ -1,50 +1,66 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import { AuthContext } from "../../provider/AuthContext";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logOutUser } = useContext(AuthContext);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+    document.querySelector("html").classList.add(localTheme);
+  }, [theme]);
 
   const logout = () => {
     logOutUser()
-      .then(() => console.log("Logged out successfully"))
-      .catch((error) => console.error("Logout error:", error));
+      .then(() => {
+        console.log("Logged out successfully");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
   };
 
   return (
     <>
-      <nav className="bg-gray-100 dark:bg-zinc-800 shadow py-4 transition-colors duration-300">
+      <nav className="shadow py-4">
         <section className="w-11/12 mx-auto flex justify-between items-center">
           <div>
             <Link to="/">
-              <h1 className="text-2xl font-bold text-black dark:text-white">Freelancer Hub</h1>
+              <h1 className="text-2xl font-bold">Freelancer Hub</h1>
             </Link>
           </div>
-
-          {/* Desktop Nav */}
           <div className="hidden lg:flex gap-x-4">
             <NavLink
               className={({ isActive }) =>
-                isActive
-                  ? "btn bg-green-800 text-white"
-                  : "btn text-gray-800 dark:text-white"
+                isActive ? "btn bg-green-800 text-white" : "btn"
               }
               to="/"
             >
               Home
             </NavLink>
-
             {user && (
               <>
                 <NavLink
                   className={({ isActive }) =>
-                    isActive
-                      ? "btn bg-green-800 text-white"
-                      : "btn text-gray-800 dark:text-white"
+                    isActive ? "btn bg-green-800 text-white" : "btn"
                   }
                   to="/addTask"
                 >
@@ -52,9 +68,7 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
-                    isActive
-                      ? "btn bg-green-800 text-white"
-                      : "btn text-gray-800 dark:text-white"
+                    isActive ? "btn bg-green-800 text-white" : "btn"
                   }
                   to={`/myPostedTasks/${user?.uid}`}
                 >
@@ -65,17 +79,13 @@ const Header = () => {
 
             <NavLink
               className={({ isActive }) =>
-                isActive
-                  ? "btn bg-green-800 text-white"
-                  : "btn text-gray-800 dark:text-white"
+                isActive ? "btn bg-green-800 text-white" : "btn"
               }
               to="/browseTask"
             >
               Browse Task
             </NavLink>
           </div>
-
-          {/* Right Auth Area */}
           <div className="flex items-center gap-3">
             {user ? (
               <div
@@ -84,7 +94,7 @@ const Header = () => {
                 onMouseLeave={() => setDropdownOpen(false)}
               >
                 <div className="avatar cursor-pointer">
-                  <div className="w-10 rounded-full ring ring-primary dark:ring-white ring-offset-base-100 ring-offset-2">
+                  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img
                       src={
                         user.photoURL ||
@@ -94,10 +104,9 @@ const Header = () => {
                     />
                   </div>
                 </div>
-
                 {dropdownOpen && (
-                  <div className="absolute top-10 right-0 bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 w-48 z-50">
-                    <p className="text-sm font-semibold mb-2 text-gray-700 dark:text-white">
+                  <div className="absolute top-10 right-0 bg-white shadow-lg rounded-lg p-3 w-48 z-50">
+                    <p className="text-sm font-semibold mb-2 text-gray-700">
                       {user.displayName || "User"}
                     </p>
                     <button
@@ -119,15 +128,28 @@ const Header = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="btn btn-outline text-black dark:text-white hidden lg:inline-flex"
+                  className="btn btn-outline text-black hidden lg:inline-flex"
                 >
                   Signup
                 </Link>
               </>
             )}
 
+            <button>
+              <label className="flex cursor-pointer gap-2">
+                <FiSun size={20} />
+                <input
+                  type="checkbox"
+                  onChange={handleToggle}
+                  checked={theme === "dark"}
+                  className="toggle theme-controller"
+                />
+                <FiMoon size={20} />
+              </label>
+            </button>
+
             <button
-              className="lg:hidden text-2xl text-gray-900 dark:text-white"
+              className="lg:hidden text-2xl"
               onClick={() => setDrawerOpen(true)}
             >
               <FaBars />
@@ -138,7 +160,7 @@ const Header = () => {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-zinc-900 shadow-lg z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -152,9 +174,7 @@ const Header = () => {
           <NavLink
             onClick={() => setDrawerOpen(false)}
             className={({ isActive }) =>
-              isActive
-                ? "btn btn-primary w-full"
-                : "btn w-full text-gray-800 dark:text-white"
+              isActive ? "btn btn-primary w-full" : "btn w-full"
             }
             to="/"
           >
@@ -166,9 +186,7 @@ const Header = () => {
               <NavLink
                 onClick={() => setDrawerOpen(false)}
                 className={({ isActive }) =>
-                  isActive
-                    ? "btn btn-primary w-full"
-                    : "btn w-full text-gray-800 dark:text-white"
+                  isActive ? "btn btn-primary w-full" : "btn w-full"
                 }
                 to="/addTask"
               >
@@ -177,9 +195,7 @@ const Header = () => {
               <NavLink
                 onClick={() => setDrawerOpen(false)}
                 className={({ isActive }) =>
-                  isActive
-                    ? "btn btn-primary w-full"
-                    : "btn w-full text-gray-800 dark:text-white"
+                  isActive ? "btn btn-primary w-full" : "btn w-full"
                 }
                 to={`/myPostedTasks/${user?.uid}`}
               >
@@ -191,9 +207,7 @@ const Header = () => {
           <NavLink
             onClick={() => setDrawerOpen(false)}
             className={({ isActive }) =>
-              isActive
-                ? "btn btn-primary w-full"
-                : "btn w-full text-gray-800 dark:text-white"
+              isActive ? "btn btn-primary w-full" : "btn w-full"
             }
             to="/browseTask"
           >
@@ -215,7 +229,7 @@ const Header = () => {
               <Link
                 to="/login"
                 onClick={() => setDrawerOpen(false)}
-                className="btn btn-outline w-full text-black dark:text-white"
+                className="btn btn-outline w-full"
               >
                 Login
               </Link>

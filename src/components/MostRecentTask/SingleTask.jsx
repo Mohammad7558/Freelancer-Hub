@@ -16,32 +16,32 @@ const SingleTask = ({ singleTask }) => {
   return (
     <div className="card bg-base-100 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300">
       <div className="card-body space-y-3">
-        <h2 className="card-title text-primary text-xl dark:text-white">📌 {title}</h2>
-        <p className="text-sm text-gray-600 dark:text-white">📝 {description}</p>
+        <h2 className="card-title text-primary text-xl">📌 {title}</h2>
+        <p className="text-sm">📝 {description}</p>
         <div className="mt-2 space-y-2 text-sm">
           <p>
-            ⏰ <span className="font-semibold text-neutral dark:text-white">Deadline:</span>{" "}
+            ⏰ <span className="font-semibold">Deadline:</span>{" "}
             {new Date(deadline).toLocaleDateString()}
           </p>
           <p>
-            🗂️ <span className="font-semibold text-neutral dark:text-white">Category:</span>{" "}
+            🗂️ <span className="font-semibold">Category:</span>{" "}
             <Link
-              className="px-3 py-[3px] text-[13px] bg-blue-100 rounded-full mx-3 text-blue-400 dark:text-black"
+              className="px-3 py-[3px] text-[13px] bg-blue-100 rounded-full mx-3 text-blue-400"
               to=""
             >
               {category}
             </Link>
           </p>
           <p>
-            💰 <span className="font-semibold text-neutral dark:text-white">Budget: </span>
+            💰 <span className="font-semibold">Budget: </span>
             {budget ? `$${budget}` : "Not specified"}
           </p>
-          <div className="border-t border-gray-300 dark:border-white pt-4 mt-6">
-            <p className="text-sm font-medium text-gray-600 uppercase tracking-wide dark:text-white">
+          <div className="border-t border-gray-300 pt-4 mt-6">
+            <p className="text-sm font-medium uppercase tracking-wide">
               Assigned by
             </p>
-            <p className="mt-1 text-gray-900 font-semibold dark:text-white">{userName}</p>
-            <p className="text-gray-500 italic text-xs dark:text-white">{userEmail}</p>
+            <p className="mt-1 font-semibold">{userName}</p>
+            <p className="text-gray-500 italic text-xs">{userEmail}</p>
           </div>
           <Link to={`/details/${_id}`}><button className="btn bg-green-800 text-white">Show Details</button></Link>
         </div>
