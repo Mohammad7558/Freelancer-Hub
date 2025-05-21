@@ -43,7 +43,7 @@ const BrowseTaskDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 transition-colors duration-500">
+    <div className="min-h-screen py-12 px-4 transition-colors duration-500">
       {/* Top message */}
       <div className="max-w-3xl mx-auto mb-4 text-center text-lg font-medium text-blue-700 dark:text-cyan-400 transition-colors duration-300">
         You bid for {bidsCounts} opportunities.

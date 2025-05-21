@@ -6,7 +6,6 @@ const BrowseTasks = () => {
   const taskData = useLoaderData();
 
   return (
-    <Slide direction="up" cascade damping={0.1} triggerOnce>
       <div className=" mx-auto px-4 py-8 min-h-screen  transition-colors duration-500">
         {taskData.length === 0 ? (
           <div className="text-center my-10 h-[60vh] flex flex-col justify-center items-center">
@@ -23,7 +22,8 @@ const BrowseTasks = () => {
             />
           </div>
         ) : (
-          <>
+          <Slide direction="up" cascade damping={0.1} triggerOnce>
+            <div>
             <h1 className="text-3xl font-bold text-center text-primary dark:text-cyan-400 mb-10 transition-colors duration-300">
               📋 All Tasks
             </h1>
@@ -79,10 +79,10 @@ const BrowseTasks = () => {
                 </div>
               ))}
             </div>
-          </>
+          </div>
+          </Slide>
         )}
       </div>
-    </Slide>
   );
 };
 
