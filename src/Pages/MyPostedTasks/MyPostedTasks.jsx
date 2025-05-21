@@ -54,12 +54,12 @@ const MyPostedTasks = () => {
           <img className="w-[500px] mt-5" src="https://i.ibb.co/6Rvw7LQG/hand-drawn-no-data-concept-52683-127823.jpg" alt="" />
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl shadow-md bg-white">
+        <div className="overflow-x-auto rounded-xl shadow-md">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
             My Posted Tasks
           </h2>
           <table className="table table-zebra w-full text-sm md:text-base">
-            <thead className="bg-base-200 text-base font-semibold text-gray-800">
+            <thead className="bg-base-200 text-base font-semibold">
               <tr>
                 <th>Title</th>
                 <th>Category</th>
