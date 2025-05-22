@@ -12,7 +12,6 @@ const AddTask = () => {
     const formData = new FormData(form);
     const addTask = Object.fromEntries(formData.entries());
     addTask.uid = user.uid;
-    addTask.deadline = new Date(addTask.deadline);
     const toastId = toast.loading("Adding Task");
     setLoading(true);
 
