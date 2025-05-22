@@ -31,7 +31,7 @@ const BrowseTaskDetails = () => {
     setBidsCounts(newBidsCounts);
 
     fetch(
-      `https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/allTasks/${_id}`,
+      `https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${_id}`,
       {
         method: "PATCH",
         headers: {

@@ -10,9 +10,7 @@ const MostRecentTask = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      "https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/allTasks"
-    )
+    fetch("https://assignment-10-server-side-psi-eight.vercel.app/allTasks")
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);

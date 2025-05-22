@@ -12,19 +12,18 @@ const AddTask = () => {
     const formData = new FormData(form);
     const addTask = Object.fromEntries(formData.entries());
     addTask.uid = user.uid;
+    addTask.deadline = new Date(addTask.deadline);
     const toastId = toast.loading("Adding Task");
     setLoading(true);
 
-    fetch(
-      "https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/allTasks",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(addTask),
-      }
-    )
+
+    fetch("https://assignment-10-server-side-psi-eight.vercel.app/allTasks", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addTask),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
