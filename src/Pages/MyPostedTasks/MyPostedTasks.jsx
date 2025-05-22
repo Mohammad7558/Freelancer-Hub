@@ -45,7 +45,7 @@ const MyPostedTasks = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 h-screen">
       {separateUserData.length === 0 ? (
         <div className="flex flex-col justify-center items-center text-center bg-transparent rounded-2xl shadow p-6">
           <h1 className="text-4xl font-bold mb-2">No Tasks Posted</h1>
@@ -66,33 +66,34 @@ const MyPostedTasks = () => {
           </Link>
         </div>
       ) : (
-        <div className="h-[70vh]">
-          <div className="overflow-x-auto rounded-xl shadow-md mx-10 mt-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
-              My Posted Tasks
-            </h2>
-            <table className="table table-zebra text-sm md:text-base">
-              <thead className="bg-base-200 text-base font-semibold">
-                <tr>
-                  <th>Title</th>
-                  <th>Category</th>
-                  <th>Budget</th>
-                  <th>Deadline</th>
-                  <th className="text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {separateUserData.map((singleData) => (
-                  <SinglePostedTask
-                    key={singleData._id}
-                    singleData={singleData}
-                    handleDeleteUserTaskData={handleDeleteUserTaskData}
-                  />
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <div className="mt-5">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
+            My Posted Tasks
+          </h2>
+        <div className="overflow-x-auto rounded-xl shadow-md mx-10 mt-10 max-h-[70vh] overflow-y-auto">
+          
+          <table className="table table-zebra text-sm md:text-base w-full">
+            <thead className="bg-base-200 text-base font-semibold">
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Budget</th>
+                <th>Deadline</th>
+                <th className="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {separateUserData.map((singleData) => (
+                <SinglePostedTask
+                  key={singleData._id}
+                  singleData={singleData}
+                  handleDeleteUserTaskData={handleDeleteUserTaskData}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
+      </div>
       )}
     </div>
   );
