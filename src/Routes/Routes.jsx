@@ -37,14 +37,14 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loader />,
         loader: () =>
           fetch(
-            "https://assignment-10-server-side-psi-eight.vercel.app/browseTask"
+            "https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/browseTask"
           ),
       },
       {
         path: "/browseTask/:id",
         loader: ({ params }) =>
           fetch(
-            `https://assignment-10-server-side-psi-eight.vercel.app/browseTask/${params.id}`
+            `https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/browseTask/${params.id}`
           ),
         hydrateFallbackElement: <Loader />,
         element: (
@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
         path: "/details/:id",
         loader: ({ params }) =>
           fetch(
-            `https://assignment-10-server-side-psi-eight.vercel.app/browseTask/${params.id}`
+            `https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/browseTask/${params.id}`
           ),
         hydrateFallbackElement: <Loader />,
         element: (
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loader />,
         loader: ({ params }) =>
           fetch(
-            `https://assignment-10-server-side-psi-eight.vercel.app/myPostedTasks/${params.id}`
+            `https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/myPostedTasks/${params.id}`
           ),
       },
       {
@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loader />,
         loader: ({ params }) =>
           fetch(
-            `https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${params.id}`
+            `https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/allTasks/${params.id}`
           ),
       },
       {

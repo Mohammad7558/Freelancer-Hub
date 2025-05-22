@@ -51,13 +51,16 @@ const Register = () => {
         const user = result.user;
         const { uid, email } = user;
         const newUser = { uid, email };
-        fetch("https://assignment-10-server-side-psi-eight.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
+        fetch(
+          "https://assignment-10-server-side-p29pbl8s6-mohammad7558s-projects.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          }
+        )
           .then((res) => res.json())
           .then((data) => console.log(data));
         updateUser({ displayName: userName, photoURL: photoLink })
