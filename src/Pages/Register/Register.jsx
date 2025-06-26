@@ -28,18 +28,18 @@ const Register = () => {
     const haveUpperCase = /[A-Z]/;
     const haveLowerCase = /[a-z]/;
 
-    if (userName == "") {
+    if (userName === "") {
       return toast.error("Enter Your Name");
-    } else if (photoLink == "") {
+    } else if (photoLink === "") {
       return toast.error("Enter Your Photo Url");
-    } else if (email == "") {
+    } else if (email === "") {
       return toast.error("Enter Email");
-    } else if (password == "") {
+    } else if (password === "") {
       return toast.error("Write A Password");
     } else if (password.length < 6) {
       return toast.error("Password Must Be 6 Character Long");
     } else if (!haveLowerCase.test(password)) {
-      return toast.error("Password Must Have An Lowercase");
+      return toast.error("Password Must Have A Lowercase");
     } else if (!haveUpperCase.test(password)) {
       return toast.error("Password Must Have An Uppercase");
     }
@@ -67,7 +67,7 @@ const Register = () => {
           .catch((error) => {
             toast.error(error.message);
           });
-        toast.dismiss();
+        toast.dismiss(toastId);
         toast.success("User Created Successfully", { id: toastId });
         navigate(from, { replace: true });
         e.target.reset();
@@ -83,7 +83,8 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         navigate(from, { replace: true });
-        toast.success("User create Successfully", { id: toastId });
+        toast.dismiss(toastId);
+        toast.success("User created Successfully", { id: toastId });
       })
       .catch((error) => {
         toast.error(error.message, { id: toastId });
@@ -91,24 +92,25 @@ const Register = () => {
   };
 
   return (
-    <div className="relative bg-gray-100 py-20 px-10 overflow-hidden min-h-screen flex items-center justify-center">
-      <div className="absolute -top-32 -left-32 w-[700px] h-[700px] bg-gradient-to-r from-purple-200 via-pink-200 to-yellow-200 opacity-30 blur-3xl animate-pulse rounded-full z-0"></div>
-      <div className="absolute -bottom-32 -right-32 w-[700px] h-[700px] bg-gradient-to-r from-yellow-200 via-green-200 to-blue-200 opacity-30 blur-3xl animate-pulse rounded-full z-0"></div>
+    <div className="relative bg-base-200 py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center transition-colors duration-300 overflow-x-hidden">
+      {/* Background blur balls */}
+      <div className="absolute -top-32 -left-32 w-72 h-72 sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-purple-300 via-pink-300 to-yellow-300 opacity-20 blur-3xl animate-pulse rounded-full z-0"></div>
+      <div className="absolute -bottom-32 -right-32 w-72 h-72 sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-yellow-300 via-green-300 to-blue-300 opacity-20 blur-3xl animate-pulse rounded-full z-0"></div>
 
-      <div className="relative z-10 w-full lg:w-1/3 bg-white p-10 shadow-md rounded-xl">
+      <div className="relative z-10 w-full max-w-md bg-base-100 p-10 shadow-md rounded-xl border border-base-300">
         <h2 className="text-2xl font-semibold text-center mb-5">Register</h2>
         <form onSubmit={handleRegister} className="space-y-4">
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
             >
               Name
             </label>
             <input
               type="text"
               id="name"
-              className="input w-full rounded-md mb-2"
+              className="input input-bordered w-full rounded-md mb-2"
               placeholder="Enter your name"
               name="userName"
             />
@@ -116,14 +118,14 @@ const Register = () => {
           <div>
             <label
               htmlFor="photoUrl"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
             >
               Photo URL
             </label>
             <input
               type="text"
               id="photoUrl"
-              className="input w-full rounded-md mb-2"
+              className="input input-bordered w-full rounded-md mb-2"
               placeholder="Enter your photo URL"
               name="photoUrl"
             />
@@ -131,14 +133,14 @@ const Register = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
             >
               Email
             </label>
             <input
               type="email"
               id="email"
-              className="input w-full rounded-md mb-2"
+              className="input input-bordered w-full rounded-md mb-2"
               placeholder="Enter your email"
               name="email"
             />
@@ -146,7 +148,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
             >
               Password
             </label>
@@ -154,19 +156,19 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="w-full rounded-md input"
+                className="input input-bordered w-full rounded-md"
                 placeholder="Enter your password"
                 name="password"
               />
               {showPassword ? (
                 <LuEyeClosed
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-3 right-4 z-10 cursor-pointer"
+                  className="absolute top-3 right-4 z-10 cursor-pointer text-lg text-gray-600 dark:text-gray-300"
                 />
               ) : (
                 <FaEye
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-3 right-4 z-10 cursor-pointer"
+                  className="absolute top-3 right-4 z-10 cursor-pointer text-lg text-gray-600 dark:text-gray-300"
                 />
               )}
             </div>
@@ -177,18 +179,31 @@ const Register = () => {
           </button>
         </form>
 
-        <div className="divider pt-4">Or Register With</div>
-        <div className="text-center mt-10 mb-5">
-          <button onClick={handleRegisterWithGoogle} className="btn btn-circle">
-            <FaGoogle />
-          </button>
-          <h1>Google</h1>
+        {/* Custom Divider */}
+        <div className="flex items-center gap-3 my-6">
+          <hr className="flex-grow border-gray-300 dark:border-gray-700" />
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Or Register With
+          </span>
+          <hr className="flex-grow border-gray-300 dark:border-gray-700" />
         </div>
 
-        <div className="mt-4">
-          <p className="text-center">
+        {/* Google Sign In */}
+        <div className="text-center mt-6 mb-4">
+          <button
+            onClick={handleRegisterWithGoogle}
+            className="btn btn-circle btn-outline"
+          >
+            <FaGoogle />
+          </button>
+          <p className="mt-2 text-sm">Google</p>
+        </div>
+
+        {/* Login Link */}
+        <div className="mt-4 text-center">
+          <p className="text-gray-700 dark:text-gray-300">
             Already Have An Account?{" "}
-            <Link className="link text-blue-500" to="/login">
+            <Link className="link text-primary font-medium" to="/login">
               Login
             </Link>
           </p>

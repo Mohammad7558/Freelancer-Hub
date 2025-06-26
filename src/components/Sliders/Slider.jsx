@@ -37,7 +37,7 @@ const Slider = () => {
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         speed={700}
         pagination={{ clickable: true }}
-        className="w-full h-[60vh] lg:h-[90vh]"
+        className="w-full h-[40vh] lg:h-[70vh] mt-10"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>

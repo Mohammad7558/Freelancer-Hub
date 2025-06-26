@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 const SingleTask = ({ singleTask }) => {
   const {
     _id,
-    category,
-    deadline,
     description,
     title,
     userEmail,
     userName,
-    budget,
   } = singleTask;
 
   return (
@@ -22,7 +19,7 @@ const SingleTask = ({ singleTask }) => {
           {description.length > 100 ? (
             <>
               {description.slice(0, 100).trim()}…
-              <button className="link ml-1 text-blue-500">Click Show Detail Button</button>
+              <Link to={`/details/${_id}`} className="link ml-1 text-blue-500">Click Show Detail Button</Link>
             </>
           ) : (
             description
@@ -30,23 +27,7 @@ const SingleTask = ({ singleTask }) => {
         </p>
 
         <div className="mt-2 space-y-2 text-sm">
-          <p>
-            ⏰ <span className="font-semibold">Deadline:</span>{" "}
-            {new Date(deadline).toLocaleDateString()}
-          </p>
-          <p>
-            🗂️ <span className="font-semibold">Category:</span>{" "}
-            <Link
-              className="px-3 py-[3px] text-[13px] bg-blue-100 rounded-full mx-3 text-blue-400"
-              to=""
-            >
-              {category}
-            </Link>
-          </p>
-          <p>
-            💰 <span className="font-semibold">Budget: </span>
-            {budget ? `$${budget}` : "Not specified"}
-          </p>
+          
           <div className="border-t border-gray-300 pt-4 mt-6">
             <p className="text-sm font-medium uppercase tracking-wide">
               Assigned by

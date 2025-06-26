@@ -12,6 +12,10 @@ import Register from "../Pages/Register/Register";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import UpdateTaskPage from "../Pages/UpdateTaskPage/UpdateTaskPage";
 import PrivateRoutes from "./PrivateRoutes";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactPage from "../Pages/ContactPage/ContactPage";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import OverviewPage from "../components/OverviewPage/OverviewPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,14 +26,6 @@ export const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
-      },
-      {
-        path: "/addTask",
-        element: (
-          <PrivateRoutes>
-            <AddTask />
-          </PrivateRoutes>
-        ),
       },
       {
         path: "browseTask",
@@ -67,19 +63,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/myPostedTasks/:id",
-        element: (
-          <PrivateRoutes>
-            <MyPostedTasks />
-          </PrivateRoutes>
-        ),
-        hydrateFallbackElement: <Loader />,
-        loader: ({ params }) =>
-          fetch(
-            `https://assignment-10-server-side-psi-eight.vercel.app/myPostedTasks/${params.id}`
-          ),
-      },
-      {
         path: "/update/:id",
         element: (
           <PrivateRoutes>
@@ -104,6 +87,49 @@ export const router = createBrowserRouter([
         path: "/terms",
         Component: TermsAndCondition,
       },
+      {
+        path: '/aboutUS',
+        Component: AboutUs
+      },
+      {
+        path: '/contact-us',
+        Component: ContactPage
+      }
     ],
   },
+  {
+    path: '/dashboard',
+    element: <PrivateRoutes><Dashboard/></PrivateRoutes>,
+    children: [
+      {
+        index: true,
+        Component: OverviewPage
+      },
+      {
+        path:'overview',
+        Component: OverviewPage
+      },
+      {
+        path: "addTask",
+        element: (
+          <PrivateRoutes>
+            <AddTask />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "myPostedTasks/:uid",
+        element: (
+          <PrivateRoutes>
+            <MyPostedTasks />
+          </PrivateRoutes>
+        ),
+        hydrateFallbackElement: <Loader />,
+        loader: ({ params }) =>
+          fetch(
+            `https://assignment-10-server-side-psi-eight.vercel.app/myPostedTasks/${params.uid}`
+          ),
+      },
+    ]
+  }
 ]);

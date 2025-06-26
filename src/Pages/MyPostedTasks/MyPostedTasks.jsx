@@ -19,12 +19,9 @@ const MyPostedTasks = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`https://assignment-10-server-side-psi-eight.vercel.app/allTasks/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -35,6 +32,7 @@ const MyPostedTasks = () => {
               setSeparateUserData(remainingUsersTask);
             }
           });
+
         Swal.fire({
           title: "Deleted!",
           text: "Your Task has been deleted.",
@@ -45,7 +43,7 @@ const MyPostedTasks = () => {
   };
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 w-full max-w-full mx-auto overflow-x-hidden">
       {separateUserData.length === 0 ? (
         <div className="flex flex-col justify-center items-center text-center bg-transparent rounded-2xl shadow p-6">
           <h1 className="text-4xl font-bold mb-2">No Tasks Posted</h1>
@@ -70,30 +68,30 @@ const MyPostedTasks = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary">
             My Posted Tasks
           </h2>
-        <div className="overflow-x-auto rounded-xl shadow-md mx-10 mt-10 max-h-[70vh] overflow-y-auto">
-          
-          <table className="table table-zebra text-sm md:text-base w-full">
-            <thead className="bg-base-200 text-base font-semibold">
-              <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Budget</th>
-                <th>Deadline</th>
-                <th className="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {separateUserData.map((singleData) => (
-                <SinglePostedTask
-                  key={singleData._id}
-                  singleData={singleData}
-                  handleDeleteUserTaskData={handleDeleteUserTaskData}
-                />
-              ))}
-            </tbody>
-          </table>
+
+          <div className="overflow-x-auto rounded-xl shadow-md mt-10 max-h-[70vh] overflow-y-auto mx-4 md:mx-10">
+            <table className="table table-zebra text-sm md:text-base w-full min-w-[600px]">
+              <thead className="bg-base-200 text-base font-semibold">
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Budget</th>
+                  <th>Deadline</th>
+                  <th className="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {separateUserData.map((singleData) => (
+                  <SinglePostedTask
+                    key={singleData._id}
+                    singleData={singleData}
+                    handleDeleteUserTaskData={handleDeleteUserTaskData}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
       )}
     </div>
   );

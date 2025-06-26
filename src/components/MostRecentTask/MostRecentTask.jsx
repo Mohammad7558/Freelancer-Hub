@@ -47,7 +47,7 @@ const MostRecentTask = () => {
                 fraction={0.1}
                 triggerOnce
               >
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
                   {tasks.map((singleTask) => (
                     <SingleTask
                       key={singleTask._id}

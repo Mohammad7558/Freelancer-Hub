@@ -30,12 +30,12 @@ const Login = () => {
 
     signInEmailPassword(email, password)
       .then(() => {
-        toast.success("User Login Successfully", {id: toastId});
+        toast.success("User Login Successfully", { id: toastId });
         navigate(from, { replace: true });
         e.target.reset();
       })
       .catch((error) => {
-        toast.error(error.message, {id: toastId});
+        toast.error(error.message, { id: toastId });
       });
   };
 
@@ -45,83 +45,96 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         navigate(from, { replace: true });
-        toast.success('User Log in Successfully', {id: toastId});
+        toast.success('User Log in Successfully', { id: toastId });
       })
       .catch(error => {
-        toast.error(error.message, {id: toastId});
+        toast.error(error.message, { id: toastId });
       });
   };
 
   return (
-    <div className="relative bg-gray-100 py-20 px-10 overflow-hidden min-h-screen flex items-center justify-center">
-      <div className="absolute -top-32 -left-32 w-[800px] h-[800px] bg-gradient-to-r from-purple-200 via-pink-200 to-yellow-200 opacity-30 blur-3xl rounded-full z-0"></div>
-      <div className="absolute -bottom-32 -right-32 w-[800px] h-[800px] bg-gradient-to-r from-yellow-200 via-green-200 to-blue-200 opacity-30 blur-3xl rounded-full z-0"></div>
-      <div className="relative z-10 w-full lg:w-1/3 bg-white p-10 shadow-md rounded-xl">
+    <div className="relative bg-base-200 py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center transition-colors duration-300 overflow-hidden">
+      {/* Background blur balls */}
+      <div className="absolute -top-32 -left-32 w-72 h-72 sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-purple-300 via-pink-300 to-yellow-300 opacity-20 blur-3xl rounded-full z-0"></div>
+      <div className="absolute -bottom-32 -right-32 w-72 h-72 sm:w-[600px] sm:h-[600px] bg-gradient-to-r from-yellow-300 via-green-300 to-blue-300 opacity-20 blur-3xl rounded-full z-0"></div>
+
+      <div className="relative z-10 w-full max-w-md bg-base-100 p-10 shadow-lg rounded-xl border border-base-300">
         <h2 className="text-2xl font-semibold text-center mb-5">Login</h2>
+
         <form onSubmit={handleSignInUser} className="space-y-4">
+          {/* Email Field */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium mb-2">
               Email
             </label>
             <input
               type="email"
               id="email"
-              className="input w-full rounded-md mb-2"
+              className="input input-bordered w-full"
               placeholder="Enter your email"
               name="email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
+          {/* Password Field */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-sm font-medium mb-2">
               Password
             </label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="w-full rounded-md input"
+                className="input input-bordered w-full"
                 placeholder="Enter your password"
                 name="password"
               />
               {showPassword ? (
                 <LuEyeClosed
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-3 right-4 z-10 cursor-pointer"
+                  className="absolute top-3 right-4 cursor-pointer text-lg"
                 />
               ) : (
                 <FaEye
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-3 right-4 z-10 cursor-pointer"
+                  className="absolute top-3 right-4 cursor-pointer text-lg"
                 />
               )}
               <div className="text-right mt-1">
-                <Link className="link text-blue-400 text-sm" state={{ email }} to="/forgetPassword">
+                <Link className="link text-primary text-sm" state={{ email }} to="/forgetPassword">
                   Forget Password?
                 </Link>
               </div>
             </div>
           </div>
 
+          {/* Submit */}
           <button type="submit" className="w-full btn btn-primary">
             Login
           </button>
         </form>
 
-        <div className="divider pt-4">Or Login With</div>
+        {/* Custom Divider with lines on both sides */}
+        <div className="flex items-center gap-3 my-6">
+          <hr className="flex-grow border-gray-300 dark:border-gray-700" />
+          <span className="text-sm text-gray-500 dark:text-gray-400">Or Login With</span>
+          <hr className="flex-grow border-gray-300 dark:border-gray-700" />
+        </div>
 
-        <div className="text-center mt-10 mb-5">
+        {/* Google Sign-In */}
+        <div className="text-center mt-6 mb-4">
           <button onClick={signInUser} className="btn btn-circle">
             <FaGoogle />
           </button>
-          <h1>Google</h1>
+          <p className="mt-2 text-sm">Google</p>
         </div>
 
-        <div className="mt-4">
-          <p className="text-center">
+        {/* Create Account */}
+        <div className="mt-4 text-center">
+          <p>
             New Here?{" "}
-            <Link state={location.state} className="link text-blue-500" to="/register">
+            <Link state={location.state} className="link text-primary font-medium" to="/register">
               Create An Account
             </Link>
           </p>

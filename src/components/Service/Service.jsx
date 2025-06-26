@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Typewriter } from 'react-simple-typewriter';
 
 const Service = () => {
@@ -25,12 +26,12 @@ const Service = () => {
             Advertise your jobs to millions of monthly users and search through
             15.8 million CVs to find the perfect match.
           </p>
-          <button
+          <Link to='/browseTask'
             className="inline-flex items-center bg-green-800 hover:bg-green-900 transition-colors duration-300 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl"
             aria-label="Get Started"
           >
             Get Started <span className="ml-3 text-xl">↗</span>
-          </button>
+          </Link>
         </div>
 
         <div className="md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
 import {
   FiCalendar,
@@ -7,7 +8,6 @@ import {
   FiTag,
   FiUser,
 } from "react-icons/fi";
-import { useLoaderData } from "react-router-dom";
 
 const BrowseTaskDetails = () => {
   const singleTaskDetails = useLoaderData();
@@ -26,8 +26,7 @@ const BrowseTaskDetails = () => {
   const [bidsCounts, setBidsCounts] = useState(bidsCount);
 
   const handleBidsCount = () => {
-    const bidsCountsToNumber = parseInt(bidsCounts);
-    const newBidsCounts = bidsCountsToNumber + 1;
+    const newBidsCounts = parseInt(bidsCounts) + 1;
     setBidsCounts(newBidsCounts);
 
     fetch(
@@ -43,66 +42,57 @@ const BrowseTaskDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
-          toast.success("Bids Count Successfully");
+          toast.success("Bid placed successfully!");
         }
       });
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 transition-colors duration-500">
-      <div className="max-w-3xl mx-auto mb-4 text-center text-lg font-medium text-blue-700 dark:text-cyan-400 transition-colors duration-300">
-        You bid for {bidsCounts} opportunities.
+    <div className="min-h-screen px-4 py-12 bg-base-100 text-base-content transition-colors">
+      <div className="max-w-3xl mx-auto text-center mb-6">
+        <p className="text-lg font-semibold">
+          You have bid on <span className="text-primary">{bidsCounts}</span> opportunities.
+        </p>
       </div>
-      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm dark:shadow-lg p-8 transition-colors duration-300">
-        <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-300">
-          {title}
-        </h1>
 
-        <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
+      <div className="card max-w-3xl mx-auto bg-base-200 shadow-xl p-6">
+        <h1 className="text-3xl font-bold mb-4">{title}</h1>
+
+        <div className="space-y-3 text-sm">
           <div className="flex items-center gap-2">
-            <FiUser className="text-blue-600 dark:text-cyan-400" />
-            <span className="font-medium text-gray-800 dark:text-gray-100">
-              {userName}
-            </span>
+            <FiUser className="text-primary" />
+            <span className="font-medium">{userName}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FiMail className="text-blue-600 dark:text-cyan-400" />
+            <FiMail className="text-primary" />
             <span>{userEmail}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FiTag className="text-blue-600 dark:text-cyan-400" />
-            <span>{category}</span>
+            <FiTag className="text-primary" />
+            <span className="badge badge-outline badge-primary">{category}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FiCalendar className="text-blue-600 dark:text-cyan-400" />
+            <FiCalendar className="text-primary" />
             <span>{deadline}</span>
           </div>
           <div className="flex items-center gap-2">
-            <FiDollarSign className="text-blue-600 dark:text-cyan-400" />
+            <FiDollarSign className="text-primary" />
             <span>{budget ? `$${budget}` : "Not specified"}</span>
           </div>
         </div>
 
         <div className="mt-6">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2 transition-colors duration-300">
-            Description
-          </h2>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-            {description}
-          </p>
+          <h2 className="text-lg font-semibold mb-2">Description</h2>
+          <p className="leading-relaxed">{description}</p>
         </div>
 
-        <div className="mt-6 flex items-center justify-between">
-          <div className="text-sm text-gray-700 dark:text-gray-300 transition-colors duration-300">
-            <span className="font-medium text-gray-900 dark:text-gray-100">
-              Total Bids:
-            </span>{" "}
-            {bidsCounts}
-          </div>
-
+        <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p className="text-sm">
+            <span className="font-semibold">Total Bids:</span> {bidsCounts}
+          </p>
           <button
             onClick={handleBidsCount}
-            className="inline-flex items-center px-5 py-2 bg-blue-600 dark:bg-cyan-500 text-white text-sm font-medium rounded-lg shadow hover:bg-blue-700 dark:hover:bg-cyan-600 transition duration-200"
+            className="btn btn-primary btn-sm sm:btn-md"
           >
             Place a Bid
           </button>
