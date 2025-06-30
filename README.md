@@ -6,7 +6,7 @@
 
 ### Homepage View
 
-![Homepage Screenshot](https://github.com/Mohammad7558/Freelancer-Hub-Frontend/blob/main/assignment-10-client-sid-c420b.web.app_.png))
+![Homepage Screenshot](https://github.com/Mohammad7558/Freelancer-Hub-Frontend/blob/main/assignment-10-client-sid-c420b.web.app_.png)
 
 
 ## 🔗 Live Website
